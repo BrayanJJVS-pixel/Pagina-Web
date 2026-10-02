@@ -1,0 +1,345 @@
+/* 1. Variables y Paleta*/
+:root {
+    --primary-color: #0c2340;       /* Azul Marino */
+    --primary-hover: #143560;
+    --secondary-color: #a21a36;     /* Guinda */
+    --accent-color: #d4af37;        /* Dorado */
+    --bg-main: #f4f6f9;             /* Gris claro de fondo */
+    --bg-card: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --border-color: #e0e0e0;
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --transition-fast: all 0.25s ease-in-out;
+}
+
+/*2. Reinicio Genaral Y Estilos Base*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Clase de utilidad para ocultar/mostrar elementos dinámicos*/
+.hidden {
+    display: none !important;
+}
+
+/*3. Encabezado Institucional y Barra De Sesión*/
+.header-institucional {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a60 100%);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid var(--accent-color);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-svg {
+    width: 45px;
+    height: 45px;
+    fill: var(--accent-color);
+}
+
+.logo-container h1 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Barra de información de usuario autenticado */
+.user-info-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+
+.badge {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-logout {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+}
+
+.btn-logout:hover {
+    background-color: #ffffff;
+    color: var(--secondary-color);
+    border-color: #ffffff;
+}
+
+/*4. Contenedor Principal y Tarjeta de Login*/
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.card-login {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    border-top: 5px solid var(--secondary-color);
+    animation: fadeIn 0.4s ease-out;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-header h2 {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(12, 35, 64, 0.15);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-login:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(12, 35, 64, 0.25);
+}
+
+.demo-credentials {
+    margin-top: 1.5rem;
+    padding: 0.8rem;
+    background-color: #f8f9fa;
+    border-left: 3px solid var(--accent-color);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.8rem;
+}
+
+.demo-credentials ul {
+    list-style: none;
+    margin-top: 0.4rem;
+}
+
+.demo-credentials li {
+    margin-bottom: 0.2rem;
+}
+
+/*5. Dashboard y Módulos de Usuario*/
+.dashboard {
+    width: 100%;
+    max-width: 1200px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.dashboard-welcome {
+    background-color: var(--bg-card);
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--primary-color);
+}
+
+.dashboard-welcome h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-welcome p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Grilla responsiva de opciones */
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.module-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+    transition: var(--transition-fast);
+}
+
+.module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-color);
+}
+
+.icon-box {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    background: rgba(12, 35, 64, 0.05);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+}
+
+.module-card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.module-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+}
+
+.btn-action {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-action:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-danger {
+    background-color: var(--secondary-color);
+}
+
+.btn-danger:hover {
+    background-color: #801228;
+}
+
+/*6. Pie de Página*/
+.footer-institucional {
+    background-color: #09172a;
+    color: #a0aec0;
+    text-align: center;
+    padding: 1.25rem;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+/*7. Animaciones Y Responsividad*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-institucional {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .logo-container {
+        flex-direction: column;
+    }
+
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+}
