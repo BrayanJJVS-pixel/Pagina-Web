@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Web Institucional - Participación Ciudadana</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Encabezado Institucional Global-->
+    <header class="header-institucional">
+        <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 24 24" aria-label="Escudo Institucional">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8s0 .002 0 0z"/>
+            </svg>
+            <h1>Portal de Servicios Ciudadanos y Participación</h1>
+        </div>
+
+        <!-- Barra superior de sesión -->
+        <div id="user-info-bar" class="user-info-bar hidden">
+            <span id="active-user-name">Usuario: <strong>-</strong></span>
+            <span id="active-user-role" class="badge">-</span>
+            <button id="btn-logout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <!--Autenticación-->
+        
+        <!--Login-->
+        <section id="login-section" class="card-login">
+            <div class="login-header">
+                <h2>Inicio de Sesión</h2>
+                <p>Ingrese sus credenciales registradas para acceder al portal.</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Correo Electrónico</label>
+                    <input type="email" id="login-email" placeholder="correo@ejemplo.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Contraseña</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn-login">INICIAR SESIÓN</button>
+            </form>
+
+            <p class="switch-text">¿No tienes cuenta? <a href="#" id="show-signup">Regístrate aquí como vecino</a></p>
+
+            <div class="demo-credentials">
+                <p><strong>Credenciales Registradas:</strong></p>
+                <ul>
+                    <li><strong>Admin:</strong> <code>admin@copaci.com</code> / <code>admin123</code></li>
+                    <li><strong>Copaci:</strong> <code>copaci@copaci.com</code> / <code>copaci123</code></li>
+                    <li><strong>Ciudadano:</strong> <code>vecino@copaci.com</code> / <code>123</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <!--Registro-->
+        <section id="signup-section" class="card-login hidden">
+            <div class="login-header">
+                <h2>Registro de Vecino</h2>
+                <p>Complete sus datos básicos para dar de alta su cuenta ciudadana.</p>
+            </div>
+
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Nombre Completo</label>
+                    <input type="text" id="signup-name" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-address">Dirección / Calle y Número</label>
+                    <input type="text" id="signup-address" placeholder="Ej. Calle Principal #123" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Correo Electrónico</label>
+                    <input type="email" id="signup-email" placeholder="correo@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Contraseña</label>
+                    <input type="password" id="signup-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-login">REGISTRARSE</button>
+            </form>
+
+            <p class="switch-text">¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión aquí</a></p>
+        </section>
+
+        <!--Pantalla Principal-->
+        <section id="dashboard-section" class="dashboard hidden">
+            
+            <div class="dashboard-welcome">
+                <h2 id="welcome-title">Panel de Gestión</h2>
+                <p id="welcome-description">Cargando permisos correspondientes...</p>
+            </div>
+
+            <!--Avisos Comunitarios-->
+            <div id="main-announcements-card" class="announcement-card hidden">
+                <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">📢 Avisos Comunitarios Recientes</h3>
+                <div id="citizen-announcements"></div>
+            </div>
+
+            <!-- Grilla de Módulos -->
+            <div class="modules-grid" id="modules-grid">
+
+                <article class="module-card" data-role="admin">
+                    <div class="icon-box">👤</div>
+                    <h3>Nuevos Registros</h3>
+                    <p>Registrar y dar de alta a nuevos usuarios en la plataforma.</p>
+                    <button class="btn-action">Gestionar</button>
+                </article>
+
+                <article class="module-card" data-role="admin">
+                    <div class="icon-box">✏️</div>
+                    <h3>Actualizar Registros</h3>
+                    <p>Modificar expedientes, accesos y datos de usuarios.</p>
+                    <button class="btn-action">Editar</button>
+                </article>
+
+                <article class="module-card" data-role="admin">
+                    <div class="icon-box">🗑️</div>
+                    <h3>Eliminar Registros</h3>
+                    <p>Dar de baja cuentas de usuario u opciones obsoletas.</p>
+                    <button class="btn-action btn-danger">Eliminar</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">💬</div>
+                    <h3>Opiniones y Comentarios</h3>
+                    <p>Consulta y atención a las inquietudes del público.</p>
+                    <button class="btn-action">Ver Opiniones</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">📅</div>
+                    <h3>Solicitud de Eventos</h3>
+                    <p>Revisión y autorización para uso de espacios comunitarios.</p>
+                    <button class="btn-action">Gestionar Solicitudes</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">📢</div>
+                    <h3>Avisos a la Comunidad</h3>
+                    <p>Publicación y difusión de comunicados oficiales.</p>
+                    <button class="btn-action">Publicar / Ver Avisos</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">📊</div>
+                    <h3>Informe Trimestral</h3>
+                    <p>Carga y lectura de informes de acciones periódicas.</p>
+                    <button class="btn-action">Consultar Informes</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">📄</div>
+                    <h3>Trámite de Documentos</h3>
+                    <p>Solicitud y expedición de constancias y documentos oficiales.</p>
+                    <button class="btn-action" id="btn-open-tramites">Iniciar Trámite</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">🚨</div>
+                    <h3>Reportes Ciudadanos</h3>
+                    <p>Generación de reportes sobre servicios públicos y solicitudes.</p>
+                    <button class="btn-action" id="btn-open-reportes">Crear Reporte</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">👁️</div>
+                    <h3>Visualización de Eventos</h3>
+                    <p>Consulta de la cartelera de actividades comunitarias programadas.</p>
+                    <button class="btn-action">Ver Cartelera</button>
+                </article>
+
+                <article class="module-card" data-role="admin copaci citizen">
+                    <div class="icon-box">🪪</div>
+                    <h3>Membresía y Anuncios</h3>
+                    <p>Estatus de registro ciudadano y publicaciones locales.</p>
+                    <button class="btn-action">Consultar Estatus</button>
+                </article>
+
+            </div>
+
+            <!--Sección Interna de Trámites y Reportes-->
+            <div id="services-container" class="dashboard-services hidden">
+                <button id="btn-back-grid" class="btn-action" style="margin-bottom: 1.5rem; width: auto; background: var(--primary-color);">← Volver al Panel de Módulos</button>
+
+                <!-- Panel del Ciudadano -->
+                <div id="citizen-dashboard" class="dashboard-view hidden">
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" data-target="tab-constancia">Solicitar Constancia</button>
+                        <button class="tab-btn" data-target="tab-luminaria">Reportar Luminaria</button>
+                        <button class="tab-btn" data-target="tab-bache">Reportar Bache</button>
+                        <button class="tab-btn" data-target="tab-historial">Mi Historial</button>
+                    </div>
+
+                    <!-- Solicitud de Constancia -->
+                    <div id="tab-constancia" class="tab-content active">
+                        <h3>Solicitud de Constancia de Residencia</h3>
+                        <form id="constancia-form">
+                            <div class="form-group">
+                                <label>Motivo de la solicitud:</label>
+                                <input type="text" id="constancia-motivo" placeholder="Ej. Trámite laboral, escolar..." required>
+                            </div>
+                            <button type="submit" class="btn-action">Generar Solicitud y Comprobante Digital</button>
+                        </form>
+
+                        <div id="documento-preview" class="preview-card hidden">
+                            <div class="doc-header">
+                                <h3 style="color: var(--primary-color);">H. MESA DIRECTIVA COPACI</h3>
+                                <p style="color: var(--text-secondary); font-size:0.9rem;">COMPROBANTE OFICIAL DE TRÁMITE COMUNITARIO</p>
+                            </div>
+                            <div class="doc-body">
+                                <p><strong>Folio Único de Trámite:</strong> <span id="doc-folio"></span></p>
+                                <p><strong>Ciudadano Solicitante:</strong> <span id="doc-nombre"></span></p>
+                                <p><strong>Dirección Registrada:</strong> <span id="doc-direccion"></span></p>
+                                <p><strong>Motivo expresado:</strong> <span id="doc-motivo"></span></p>
+                                <p><strong>Fecha de Expedición:</strong> <span id="doc-fecha"></span></p>
+                            </div>
+                            <div class="doc-footer">
+                                <div class="signature-box">
+                                    <p>___________________________________</p>
+                                    <p><strong>Espacio destinado a Sello y Firma del COPACI</strong></p>
+                                </div>
+                            </div>
+                            <button onclick="window.print()" class="btn-action" style="margin-top:15px; background: var(--secondary-color);">🖨️ Imprimir / Guardar Documento PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Reporte de Luminaria -->
+                    <div id="tab-luminaria" class="tab-content">
+                        <h3>Reporte de Falla en Luminaria Pública</h3>
+                        <form id="luminaria-form">
+                            <div class="form-group">
+                                <label>Ubicación / Calle principal:</label>
+                                <input type="text" id="lum-calle" placeholder="Ej. Av. De las Rosas" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Entre qué calles se ubica:</label>
+                                <input type="text" id="lum-entre" placeholder="Ej. Entre Calle Hidalgo y Calle Morelos" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción del fallo:</label>
+                                <textarea id="lum-desc" rows="3" placeholder="Ej. La luminaria se apaga a medianoche o parpadea constante..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-action">Registrar Reporte de Luminaria</button>
+                        </form>
+                    </div>
+
+                    <!-- Reporte de Bacheo -->
+                    <div id="tab-bache" class="tab-content">
+                        <h3>Reporte de Bacheo / Daño Asfáltico</h3>
+                        <form id="bache-form">
+                            <div class="form-group">
+                                <label>Ubicación / Dirección exacta:</label>
+                                <input type="text" id="bache-dir" placeholder="Ej. Calle Ciprés frente al #45" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nivel de Gravedad:</label>
+                                <select id="bache-gravedad" required>
+                                    <option value="Bajo">Bajo (Fisura o bache pequeño)</option>
+                                    <option value="Medio">Medio (Bache profundo de riesgo moderado)</option>
+                                    <option value="Alto">Alto (Hundimiento grave o riesgo de accidente)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción del problema:</label>
+                                <textarea id="bache-desc" rows="3" placeholder="Detalles del daño en la carpeta asfáltica..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-action">Registrar Reporte de Bacheo</button>
+                        </form>
+                    </div>
+
+                    <!-- Historial del Usuario -->
+                    <div id="tab-historial" class="tab-content">
+                        <h3>Mi Historial de Solicitudes y Reportes</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Folio</th>
+                                        <th>Tipo</th>
+                                        <th>Detalles</th>
+                                        <th>Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="user-history-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Panel Administrativo -->
+                <div id="admin-dashboard" class="dashboard-view hidden">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Panel de Control Administrativo - COPACI</h3>
+                    
+                    <div class="admin-section" style="margin-bottom: 1.5rem;">
+                        <h4>Publicar Aviso Comunitario</h4>
+                        <form id="announcement-form" style="margin-top: 0.5rem;">
+                            <div class="form-group">
+                                <input type="text" id="announcement-text" placeholder="Escriba un anuncio oficial para los vecinos..." required>
+                            </div>
+                            <button type="submit" class="btn-action" style="width: auto;">Publicar Aviso</button>
+                        </form>
+                    </div>
+
+                    <div class="admin-section">
+                        <div class="admin-header-controls" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                            <h4>Gestión y Actualización de Estatus de Trámites</h4>
+                            <div>
+                                <label for="filter-type" style="font-size: 0.85rem; font-weight:600;">Filtrar:</label>
+                                <select id="filter-type" style="padding: 0.4rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                                    <option value="ALL">Todos los registros</option>
+                                    <option value="Constancia de Residencia">Constancias</option>
+                                    <option value="Reporte Luminaria">Luminarias</option>
+                                    <option value="Reporte Bacheo">Bacheo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Folio / ID</th>
+                                        <th>Ciudadano</th>
+                                        <th>Detalles</th>
+                                        <th>Estatus Actual</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; Brayan Jonathan Jose Vasquez</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
